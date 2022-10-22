@@ -11,10 +11,10 @@ public class AlunoTeste implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		TesteGetName();
+		TestetoString();
 	}
 	
-	private void TesteGetName() {
+	private void TestetoString() {
 		//arrange
 		String nomeEsperado = "alan";
 		String matriculaEsperada = "12548745";
@@ -24,7 +24,7 @@ public class AlunoTeste implements ApplicationRunner {
 		Aluno alunoTeste = new Aluno(nomeEsperado, matriculaEsperada, quantidadeMaximaConteudosEmprestadosEsperada);
 		
 		// act
-		System.out.println("Teste finalizado!!!!" + alunoTeste.GetNome());
+		System.out.println(alunoTeste.toString());
 	}
 	
 }

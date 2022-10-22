@@ -6,7 +6,7 @@ import java.util.List;
 public class Aluno {
 	private String Nome;
 	private String Matricula;
-	private Integer QuantidadeMaximaConteudosEmprestados;
+	private int QuantidadeMaximaConteudosEmprestados;
 	private List<Conteudo> ConteudosEmprestados;
 	
 	public Aluno(String nome, String matricula, int quantidadeMaximaConteudosEmprestados) {
@@ -24,7 +24,25 @@ public class Aluno {
 		return Matricula;
 	}
 	
-	public Boolean PodeFazerEmprestimoNaBiblioteca() {
+	public Boolean PodeFazerReserva() {
 		return ConteudosEmprestados.size() < QuantidadeMaximaConteudosEmprestados;
+	}
+	
+	public void AdicionarConteudo(Conteudo conteudo) {
+		if (ConteudosEmprestados.size() < QuantidadeMaximaConteudosEmprestados) {
+			ConteudosEmprestados.add(conteudo);
+		}
+	}
+	
+	public void RemoverConteudo(Conteudo conteudo) {
+		int index = ConteudosEmprestados.indexOf(conteudo);
+		ConteudosEmprestados.remove(index);
+	}
+	
+	@Override
+	public String toString() {
+		return "DADOS ALUNO\nNome: " + Nome + "\nMatricula: " + Matricula
+				+ "\nMáximo de conteúdos emprestados: " + QuantidadeMaximaConteudosEmprestados
+				+ "\nConteudos emprestados: " + ConteudosEmprestados;
 	}
 }

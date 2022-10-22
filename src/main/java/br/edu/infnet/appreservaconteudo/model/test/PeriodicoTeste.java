@@ -1,16 +1,14 @@
 package br.edu.infnet.appreservaconteudo.model.test;
 
-import java.time.LocalDate;
-
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 import br.edu.infnet.appreservaconteudo.model.domain.Conteudo;
-import br.edu.infnet.appreservaconteudo.model.domain.Didatico;
+import br.edu.infnet.appreservaconteudo.model.domain.Periodico;
 
 @Component
-public class DidaticoTeste implements ApplicationRunner {
-	
+public class PeriodicoTeste implements ApplicationRunner {
+
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		TestetoString();
@@ -18,20 +16,21 @@ public class DidaticoTeste implements ApplicationRunner {
 	
 	private void TestetoString() {
 		//arrange
-		LocalDate dataConclusaoEsperado = LocalDate.of(2010, 10, 13);
 		String tituloEsperado = "Titulo teste";
-		String autorEsperado = "Fula de tal";
+		String edicaoEsperado = "125";
+		String nomeEsperado = "Revista A";
 		String identificadorEsperado = "3413413";
 		int numeroCopiasEsperado = 12;
 		int numeroCopiasDisponiveisEsperado = 12;
 		
 		//act
-		Conteudo didaticoTeste = new Didatico(dataConclusaoEsperado, tituloEsperado, autorEsperado);
-		didaticoTeste.SetIdentificador(identificadorEsperado);
-		didaticoTeste.SetNumeroCopiasTotal(numeroCopiasEsperado);
-		didaticoTeste.SetNumeroCopiasDisponiveis(numeroCopiasDisponiveisEsperado);
+		Conteudo periodicoTeste = new Periodico(tituloEsperado, edicaoEsperado, nomeEsperado);
+		periodicoTeste.SetIdentificador(identificadorEsperado);
+		periodicoTeste.SetNumeroCopiasTotal(numeroCopiasEsperado);
+		periodicoTeste.SetNumeroCopiasDisponiveis(numeroCopiasDisponiveisEsperado);
 		
 		// act
-		System.out.println(didaticoTeste.toString());
+		System.out.println(periodicoTeste.toString());
 	}
+	
 }
