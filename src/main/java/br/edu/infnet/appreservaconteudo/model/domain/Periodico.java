@@ -2,19 +2,25 @@ package br.edu.infnet.appreservaconteudo.model.domain;
 
 public class Periodico extends Conteudo {
 	private String Edicao;
-	private String Titulo;
 	private String Nome;
 	
-	public Periodico(String titulo, String edicao, String nome) {
-		Titulo = titulo;
+	public Periodico(String edicao, String nome) {
 		Edicao = edicao;
 		Nome = nome;
+	}
+	
+	public String GetEdicao() {
+		return Edicao;
+	}
+
+	public String GetNome() {
+		return Nome;
 	}
 
 	@Override
 	public String toString() {
-		return "DADOS PERIODICO\nNome: " + Nome + "Título: " + Titulo + "\nNome: " + Nome + "\nEdicao: " + Edicao
-				+ "\nNúmero de cópias: " + GetNumeroCopiasTotal() + "\nCópias disponíveis: "
-				+ GetNumeroCopiasDisponiveis() + "\nIdentificador: " + GetIdentificador();
+		return super.toString() + "\nDADOS PERIODICO\nNome: " + Nome + "\nNome: " + Nome + "\nEdicao: " + Edicao
+				+ "\nReservado: " + GetReservado() + "\nRetirado: "
+				+ GetRetirado() + "\nIdentificador: " + GetIdentificador();
 	}
 }

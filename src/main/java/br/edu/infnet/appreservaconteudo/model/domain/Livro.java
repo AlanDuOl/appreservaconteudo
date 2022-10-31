@@ -4,21 +4,43 @@ import java.time.LocalDate;
 
 public class Livro extends Conteudo {
 	private LocalDate DataPublicacao;
-	private String Titulo;
 	private String Autor;
 	private String Editora;
 	
-	public Livro(LocalDate dataPublicacao, String titulo, String autor, String editora) {
+	public Livro(LocalDate dataPublicacao, String autor, String editora) {
 		DataPublicacao = dataPublicacao;
-		Titulo = titulo;
 		Autor = autor;
+		Editora = editora;
+	}
+	
+	public LocalDate GetDataPublicacao() {
+		return DataPublicacao;
+	}
+	
+	public void SetDataPublicacao(LocalDate dataPublicacao) {
+		DataPublicacao = dataPublicacao;
+	}
+	
+	public String GetAutor() {
+		return Autor;
+	}
+	
+	public void SetAutor(String autor) {
+		Autor = autor;
+	}
+	
+	public String GetEditora() {
+		return Editora;
+	}
+	
+	public void SetReservado(String editora) {
 		Editora = editora;
 	}
 	
 	@Override
 	public String toString() {
-		return "DADOS LIVRO\nTítulo: " + Titulo + "\nAutor: " + Autor + "\nData de publicação: " + DataPublicacao
-				+ "\nEditora: " + Editora + "\nNúmero de cópias: " + GetNumeroCopiasTotal()
-				+ "\nCópias disponíveis: " + GetNumeroCopiasDisponiveis() + "\nIdentificador: " + GetIdentificador();
+		return super.toString() + "\nDADOS LIVRO\nTítulo: " + GetTitulo() + "\nAutor: " + Autor + "\nData de publicação: " + DataPublicacao
+				+ "\nEditora: " + Editora + "\nReservado: " + GetReservado()
+				+ "\nRetirado: " + GetRetirado() + "\nIdentificador: " + GetIdentificador();
 	}
 }

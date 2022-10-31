@@ -3,6 +3,7 @@ package br.edu.infnet.appreservaconteudo.model.test;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import br.edu.infnet.appreservaconteudo.controller.PeriodicoController;
 import br.edu.infnet.appreservaconteudo.model.domain.Conteudo;
 import br.edu.infnet.appreservaconteudo.model.domain.Periodico;
 
@@ -11,6 +12,7 @@ public class PeriodicoTeste implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		PopularLista();
 		TestetoString();
 	}
 	
@@ -20,17 +22,26 @@ public class PeriodicoTeste implements ApplicationRunner {
 		String edicaoEsperado = "125";
 		String nomeEsperado = "Revista A";
 		String identificadorEsperado = "3413413";
-		int numeroCopiasEsperado = 12;
-		int numeroCopiasDisponiveisEsperado = 12;
 		
 		//act
-		Conteudo periodicoTeste = new Periodico(tituloEsperado, edicaoEsperado, nomeEsperado);
+		Conteudo periodicoTeste = new Periodico(edicaoEsperado, nomeEsperado);
 		periodicoTeste.SetIdentificador(identificadorEsperado);
-		periodicoTeste.SetNumeroCopiasTotal(numeroCopiasEsperado);
-		periodicoTeste.SetNumeroCopiasDisponiveis(numeroCopiasDisponiveisEsperado);
+		periodicoTeste.SetTitulo(tituloEsperado);
 		
 		// act
 		System.out.println(periodicoTeste.toString());
+	}
+	
+	private void PopularLista() {
+		Periodico periodico1 = new Periodico("123", "Revista A");
+		periodico1.SetTitulo("Estudo A");
+		Periodico periodico2 = new Periodico("11", "Revista B");
+		periodico2.SetTitulo("Estudo teste");
+		Periodico periodico3 = new Periodico("321", "Revista C");
+		periodico3.SetTitulo("Estudo teste");
+		PeriodicoController.Incluir(periodico1);
+		PeriodicoController.Incluir(periodico2);
+		PeriodicoController.Incluir(periodico3);
 	}
 	
 }

@@ -1,35 +1,54 @@
 package br.edu.infnet.appreservaconteudo.model.domain;
 
 public abstract class Conteudo {
+	private int Id;
 	private String Identificador;
-	private int NumeroCopiasTotal;
-	private int NumeroCopiasDisponiveis;
-	
-	public Boolean DisponivelParaLocacao() {
-		return NumeroCopiasDisponiveis > 0;
-	}
+	private boolean Reservado;
+	private boolean Retirado;
+	private String Titulo;
 	
 	public String GetIdentificador() {
 		return Identificador;
+	}
+	
+	public void SetId(int id) {
+		Id = id;
+	}
+	
+	public int GetId() {
+		return Id;
 	}
 	
 	public void SetIdentificador(String identificador) {
 		Identificador = identificador;
 	}
 	
-	public int GetNumeroCopiasTotal() {
-		return NumeroCopiasTotal;
+	public boolean GetReservado() {
+		return Reservado;
 	}
 	
-	public void SetNumeroCopiasTotal(int numeroCopias) {
-		NumeroCopiasTotal = numeroCopias;
+	public void SetReservado(boolean reservado) {
+		Reservado = reservado;
 	}
 	
-	public int GetNumeroCopiasDisponiveis() {
-		return NumeroCopiasDisponiveis;
+	public boolean GetRetirado() {
+		return Retirado;
 	}
 	
-	public void SetNumeroCopiasDisponiveis(int numeroCopiasDisponiveis) {
-		NumeroCopiasDisponiveis = numeroCopiasDisponiveis;
+	public void SetRetirado(boolean retirado) {
+		Retirado = retirado;
+	}
+	
+	public String GetTitulo() {
+		return Titulo;
+	}
+	
+	public void SetTitulo(String titulo) {
+		Titulo = titulo;
+	}
+	
+	@Override
+	public String toString() {
+		return "Id: " + Id + "\nTitulo: " + Titulo;
 	}
 }

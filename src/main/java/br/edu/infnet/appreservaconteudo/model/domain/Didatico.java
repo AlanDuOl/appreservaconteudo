@@ -4,19 +4,25 @@ import java.time.LocalDate;
 
 public class Didatico extends Conteudo {
 	private LocalDate DataConclusao;
-	private String Titulo;
 	private String Autor;
 	
-	public Didatico(LocalDate dataConclusao, String titulo, String autor) {
+	public Didatico(LocalDate dataConclusao, String autor) {
 		DataConclusao = dataConclusao;
-		Titulo = titulo;
 		Autor = autor;
 	}
+	
+	public LocalDate GetDataConclusao() {
+		return DataConclusao;
+	}
 
+	public String GetAutor() {
+		return Autor;
+	}
+	
 	@Override
 	public String toString() {
-		return "DADOS DIDATICO\nTítulo: " + Titulo + "\nAutor: " + Autor + "\nData de lançamento: "+ DataConclusao
-				+ "\nNúmero de cópias: " + GetNumeroCopiasTotal() + "\nCópias disponíveis: " + GetNumeroCopiasDisponiveis()
+		return super.toString() + "\nDADOS DIDATICO" + "\nAutor: " + Autor + "\nData de lançamento: "+ DataConclusao
+				+ "\nReservado: " + GetReservado() + "\nRetirado: " + GetRetirado()
 				+ "\nIdentificador: " + GetIdentificador();
 	}
 }
