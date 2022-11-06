@@ -4,11 +4,24 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+//@Entity
+//@Table(name = "treserva")
 public class Reserva {
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	private LocalDate DataReserva;
 	private String Descricao;
+	@Transient
 	private List<Conteudo> Conteudos;
+	@Transient
 	private Aluno Aluno;
 	
 	public Reserva() {}
@@ -51,13 +64,11 @@ public class Reserva {
 	public void AdicionarConteudo(Conteudo conteudo) {
 		//TODO: checar se produto ainda pode ser adicionado
 		Conteudos.add(conteudo);
-		Aluno.AdicionarConteudo(conteudo);
 	}
 	
 	public void RemoverConteudo(Conteudo conteudo) {
 		int index = Conteudos.indexOf(conteudo);
 		Conteudos.remove(index);
-		Aluno.RemoverConteudo(conteudo);
 	}
 	
 	public void Finalizar() {
@@ -68,6 +79,6 @@ public class Reserva {
 	
 	@Override
 	public String toString() {
-		return "DADOS RESERVA" + "\nId: " + Id + "\nData Reserva: " + DataReserva + "\nDescição: " + Descricao + "\nConteudos: " + Conteudos.size() + "\nAluno: " + Aluno.GetMatricula();
+		return "DADOS RESERVA" + "\nId: " + Id + "\nData Reserva: " + DataReserva + "\nDescição: " + Descricao + "\nConteudos: " + Conteudos.size() + "\nAluno: " + Aluno.getMatricula();
 	}
 }

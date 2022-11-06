@@ -1,8 +1,15 @@
 package br.edu.infnet.appreservaconteudo.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tperiodico")
 public class Periodico extends Conteudo {
 	private String Edicao;
 	private String Nome;
+	
+	public Periodico() {}
 	
 	public Periodico(String edicao, String nome) {
 		Edicao = edicao;

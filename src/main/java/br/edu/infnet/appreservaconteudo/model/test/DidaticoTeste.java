@@ -1,15 +1,19 @@
 package br.edu.infnet.appreservaconteudo.model.test;
 
 import java.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import br.edu.infnet.appreservaconteudo.controller.DidaticoController;
 import br.edu.infnet.appreservaconteudo.model.domain.Conteudo;
 import br.edu.infnet.appreservaconteudo.model.domain.Didatico;
+import br.edu.infnet.appreservaconteudo.service.DidaticoService;
 
 @Component
 public class DidaticoTeste implements ApplicationRunner {
+	
+	@Autowired
+	private DidaticoService didaticoService;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -44,8 +48,8 @@ public class DidaticoTeste implements ApplicationRunner {
 		didatico2.SetTitulo("Estudo teste");
 		Didatico didatico3 = new Didatico(LocalDate.of(2010, 10, 13), "R. A. Gomes");
 		didatico3.SetTitulo("Estudo teste");
-		DidaticoController.Incluir(didatico1);
-		DidaticoController.Incluir(didatico2);
-		DidaticoController.Incluir(didatico3);
+		didaticoService.Incluir(didatico1);
+		didaticoService.Incluir(didatico2);
+		didaticoService.Incluir(didatico3);
 	}
 }

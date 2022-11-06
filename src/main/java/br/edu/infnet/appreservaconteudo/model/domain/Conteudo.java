@@ -1,6 +1,19 @@
 package br.edu.infnet.appreservaconteudo.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Table(name = "tconteudo")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Conteudo {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int Id;
 	private String Identificador;
 	private boolean Reservado;

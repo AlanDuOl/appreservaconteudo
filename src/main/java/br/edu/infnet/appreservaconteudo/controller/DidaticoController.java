@@ -1,43 +1,27 @@
 package br.edu.infnet.appreservaconteudo.controller;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import br.edu.infnet.appreservaconteudo.model.domain.Didatico;
+import br.edu.infnet.appreservaconteudo.service.DidaticoService;
 
 @Controller
 public class DidaticoController {
 	
-	private static Map<Integer, Didatico> mapa = new HashMap<Integer, Didatico>();
-
-	private static Integer id = 1;
-
-	public static void Incluir(Didatico didatico) {
-		didatico.SetId(id++);
-		mapa.put(didatico.GetId(), didatico);
-	}
-
-	public static void Excluir(Integer id) {
-		mapa.remove(id);
-	}
-
-	public static Collection<Didatico> ObterLista() {
-		return mapa.values();
-	}
+	@Autowired
+	private DidaticoService didaticoService;
 	
 	@GetMapping(value = "/didatico/lista")
 	public String Listar(Model model) {
-		model.addAttribute("didaticos", mapa.values());
+		model.addAttribute("didaticos", didaticoService.ObterLista());
 		return "didatico/lista";
 	}
 
 	@GetMapping(value = "/didatico/{id}/excluir")
 	public String Exclusao(@PathVariable Integer id) {
-		Excluir(id);
+		didaticoService.Excluir(id);
 		return "redirect:/didatico/lista";
 	}
 }

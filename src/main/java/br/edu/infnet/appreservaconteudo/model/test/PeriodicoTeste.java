@@ -1,15 +1,19 @@
 package br.edu.infnet.appreservaconteudo.model.test;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import br.edu.infnet.appreservaconteudo.controller.PeriodicoController;
 import br.edu.infnet.appreservaconteudo.model.domain.Conteudo;
 import br.edu.infnet.appreservaconteudo.model.domain.Periodico;
+import br.edu.infnet.appreservaconteudo.service.PeriodicoService;
 
 @Component
 public class PeriodicoTeste implements ApplicationRunner {
 
+	@Autowired
+	private PeriodicoService periodicoService;
+	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		PopularLista();
@@ -39,9 +43,9 @@ public class PeriodicoTeste implements ApplicationRunner {
 		periodico2.SetTitulo("Estudo teste");
 		Periodico periodico3 = new Periodico("321", "Revista C");
 		periodico3.SetTitulo("Estudo teste");
-		PeriodicoController.Incluir(periodico1);
-		PeriodicoController.Incluir(periodico2);
-		PeriodicoController.Incluir(periodico3);
+		periodicoService.Incluir(periodico1);
+		periodicoService.Incluir(periodico2);
+		periodicoService.Incluir(periodico3);
 	}
 	
 }

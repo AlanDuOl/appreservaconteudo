@@ -2,14 +2,18 @@ package br.edu.infnet.appreservaconteudo.model.test;
 
 import java.time.LocalDate;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-import br.edu.infnet.appreservaconteudo.controller.LivroController;
 import br.edu.infnet.appreservaconteudo.model.domain.Livro;
+import br.edu.infnet.appreservaconteudo.service.LivroService;
 
 @Component
 public class LivroTeste implements ApplicationRunner {
+	
+	@Autowired
+	private LivroService LivroService;
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
@@ -41,9 +45,9 @@ public class LivroTeste implements ApplicationRunner {
 		livro2.SetTitulo("Natureza selvagem");
 		Livro livro3 = new Livro(LocalDate.of(2001, 9, 4), "A. B. Nogueira", "Nova");
 		livro3.SetTitulo("O Segredo de kant");
-		LivroController.Incluir(livro1);
-		LivroController.Incluir(livro2);
-		LivroController.Incluir(livro3);
+		LivroService.Incluir(livro1);
+		LivroService.Incluir(livro2);
+		LivroService.Incluir(livro3);
 	}
 	
 }

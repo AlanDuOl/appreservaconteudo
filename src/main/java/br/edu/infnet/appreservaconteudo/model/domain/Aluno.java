@@ -1,67 +1,88 @@
 package br.edu.infnet.appreservaconteudo.model.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "taluno")
 public class Aluno {
-	private int Id;
-	private String Nome;
-	private String Matricula;
-	private int QuantidadeMaximaConteudosEmprestados;
-	private List<Conteudo> ConteudosEmprestados;
-	private List<Reserva> Reservas;
-	
-	public Aluno(String nome, String matricula, int quantidadeMaximaConteudosEmprestados) {
-		Nome = nome;
-		Matricula = matricula;
-		QuantidadeMaximaConteudosEmprestados = quantidadeMaximaConteudosEmprestados;
-		ConteudosEmprestados = new ArrayList<Conteudo>();
-		Reservas = new ArrayList<Reserva>();
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String nome;
+	private String matricula;
+	private String email;
+	private int quantidadeMaximaConteudosEmprestados;
+	@ManyToOne
+	@JoinColumn(name = "idUsuario")
+	private Usuario usuario;
+
+	public Aluno() {
 	}
-	
-	public int GetId() {
-		return Id;
+
+	public Aluno(String nome, String matricula, int quantidadeMaximaConteudosEmprestados, String email) {
+		this.nome = nome;
+		this.matricula = matricula;
+		this.quantidadeMaximaConteudosEmprestados = quantidadeMaximaConteudosEmprestados;
+		this.email = email;
 	}
-	
-	public void SetId(int id) {
-		Id = id;
+
+	public int getId() {
+		return id;
 	}
-	
-	public String GetNome() {
-		return Nome;
+
+	public void setId(int id) {
+		this.id = id;
 	}
-	
-	public String GetMatricula() {
-		return Matricula;
+
+	public String getNome() {
+		return nome;
 	}
-	
-	public List<Conteudo> GetConteudosEmprestados(){
-		return ConteudosEmprestados;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	
-	public List<Reserva> GetReservas(){
-		return Reservas;
+
+	public String getMatricula() {
+		return matricula;
 	}
-	
-	public Boolean PodeFazerReserva() {
-		return ConteudosEmprestados.size() < QuantidadeMaximaConteudosEmprestados;
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
-	
-	public void AdicionarConteudo(Conteudo conteudo) {
-		if (ConteudosEmprestados.size() < QuantidadeMaximaConteudosEmprestados) {
-			ConteudosEmprestados.add(conteudo);
-		}
+
+	public String getEmail() {
+		return email;
 	}
-	
-	public void RemoverConteudo(Conteudo conteudo) {
-		int index = ConteudosEmprestados.indexOf(conteudo);
-		ConteudosEmprestados.remove(index);
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	
+
+	public int getQuantidadeMaximaConteudosEmprestados() {
+		return quantidadeMaximaConteudosEmprestados;
+	}
+
+	public void setQuantidadeMaximaConteudosEmprestados(int quantidadeMaximaConteudosEmprestados) {
+		this.quantidadeMaximaConteudosEmprestados = quantidadeMaximaConteudosEmprestados;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	@Override
 	public String toString() {
-		return "DADOS ALUNO\nNome: " + Nome + "\nMatricula: " + Matricula
-				+ "\nMáximo de conteúdos emprestados: " + QuantidadeMaximaConteudosEmprestados
-				+ "\nConteudos emprestados: " + ConteudosEmprestados;
+		return "DADOS ALUNO\nNome: " + nome + "\nMatricula: " + matricula + "\nEmail: " + email
+				+ "\nMáximo de conteúdos emprestados: " + quantidadeMaximaConteudosEmprestados;
 	}
 }

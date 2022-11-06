@@ -1,11 +1,16 @@
 package br.edu.infnet.appreservaconteudo.model.domain;
-
 import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "tlivro")
 public class Livro extends Conteudo {
 	private LocalDate DataPublicacao;
 	private String Autor;
 	private String Editora;
+	
+	public Livro() {}
 	
 	public Livro(LocalDate dataPublicacao, String autor, String editora) {
 		DataPublicacao = dataPublicacao;
