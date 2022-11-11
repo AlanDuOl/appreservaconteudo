@@ -31,6 +31,9 @@ public class AlunoController {
 	
 	@PostMapping(value = "/aluno/cadastrar")
 	public String Cadastrar(Aluno aluno, @SessionAttribute("usuario") Usuario usuario) {
+		usuario.setAlunos(null);
+		usuario.setConteudos(null);
+		usuario.setReservas(null);
 		aluno.setUsuario(usuario);
 		alunoService.Incluir(aluno);
 		return "redirect:/aluno/lista";

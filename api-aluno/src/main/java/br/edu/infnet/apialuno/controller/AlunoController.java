@@ -32,19 +32,12 @@ public class AlunoController {
 	}
 	
 	@PostMapping(value = "/cadastrar")
-	public String Cadastrar(@RequestBody Aluno aluno) {
-		try {
-			alunoService.Incluir(aluno);
-			return "Aluno incluído com sucesso";
-		}
-		catch(Exception e) {
-			return e.getMessage();
-		}
+	public void Cadastrar(@RequestBody Aluno aluno) {
+		alunoService.Incluir(aluno);
 	}
 	
 	@DeleteMapping(value = "/{id}/excluir")
-	public String Exclusao(@PathVariable Integer id) {
+	public void Exclusao(@PathVariable Integer id) {
 		alunoService.Excluir(id);
-		return "Aluno excluído com sucesso";
 	}
 }
